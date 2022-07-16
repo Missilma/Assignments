@@ -30,8 +30,9 @@ export default class App extends React.Component {
     const {value} = this.state
     return (
       <View style={styles.container}>
-        <Text style={{ fontSize: 60, marginBottom: -20 }}>{value}</Text>
-        <Text style={{ fontSize: 12, padding: 20, color: 'grey' }}>-12</Text>
+        <Text style={{ fontSize: 70, marginBottom: -20 }}>{value}</Text>
+        
+        <Text style={{ fontSize: 12, padding: 20, color: 'grey' }}></Text>
         <Text style={{ fontSize: 12, padding: 20, color: 'grey' }}>{"Limit Reached"}</Text>
         <StatusBar style='auto'/>
         <View style={{ flexDirection: 'row' }}>
@@ -50,6 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
 
   },
 });
