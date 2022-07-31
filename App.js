@@ -1,43 +1,78 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-web';
+import PrimaryButton from './Component/PrimaryButton';
+import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import Settings from './Component/Settings';
+import { useState } from 'react';
+
 
 export default class App extends React.Component {
-  state = {
-    value: 0,
 
+state = {
+    value: 0,
   }
 
-  increaseValue = () => {
+
+  increaseValueHandler = () => {
     this.setState({
       value: this.state.value + 1,
-      // tatal_taps: this.state.total_taps + 1
     })
     console.log("value: " + (this.state.value + 1))
   };
 
-  decreaseValue = () => {
+  decreaseValueHandler = () => {
     this.setState({
       value: this.state.value - 1,
-      tatal_taps: this.state.total_taps + 1
     })
     console.log("value: " + (this.state.value - 1))
   };
 
+  reloadValueHandler = () => {
+    this.setState({
+      value: this.state.value * 0,
+    })
+  }
+
   render() {
     const { value } = this.state
     return (
-      <View style={styles.container}>
-        <Text style={{ fontSize: 70, marginBottom: -20 }}>{value}</Text>
-        <Text style={{ fontSize: 12, padding: 20, color: 'grey' }}></Text>
-        <Text style={{ fontSize: 12, color: 'grey' }}>-12</Text>
-        <Text style={{ fontSize: 12, color: 'grey' }}>{"Limit Reached"}</Text>
-        <StatusBar style='auto' />
-        <View style={{ flexDirection: 'row', margin: 12, }}>
-          <Button onPress={this.decreaseValue} title="Decrement" />
-          <Text>   </Text>
-          <Button onPress={this.increaseValue} title="Increment" />
+        <View style={styles.container}>
+        <View style={styles.icon}>
+          <AntDesign
+            name="infocirlce"
+            size={24}
+            color="black"
+            style={{ margin: 10 }}
+          />
+          <Ionicons
+            name="settings-sharp"
+            size={24}
+            color="black"
+            style={{ margin: 10 }}
+            
+          />
+           
+          <Ionicons
+            name="reload-sharp"
+            size={24} color="black"
+            style={{ margin: 10 }}
+            onPress={this.reloadValueHandler}
+          />
+        </View>
+        <Text style={styles.count}>{value}</Text>
+        <View style={styles.limitComponant}>
+          <Text>-12</Text>
+          <Text>{"Limit Reached"}</Text>
+        </View>
+
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={this.decreaseValueHandler}>-</PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={this.increaseValueHandler}>+</PrimaryButton>
+          </View>
         </View>
       </View>
     );
@@ -50,6 +85,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-},
+  },
+  count: {
+    fontSize: 100,
+    marginBottom: 20
+  },
+  limitComponant: {
+    fontSize: 12,
+    fontColor: 'gray',
+    textAlign: 'center'
+  },
+  buttonsContainer: {
+    flexDirection: 'row'
+  },
+  buttonContainer: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 25
+  },
+  icon: {
+    flexDirection: 'row'
+  }
 
 });
